@@ -1,15 +1,26 @@
-import java.lang.ref.SoftReference;
-
 public class CreditCard extends PaymentCard {
 
-    public CreditCard(int cardNumber, String expiryDate, int securityNumber, int charge){
-      super(cardNumber, expiryDate, securityNumber, charge);
+    private double creditLimit;
+
+    public CreditCard(int cardNumber, String expiryDate, int securityNumber, double creditLimit){
+      super(cardNumber, expiryDate, securityNumber);
+
+      this.creditLimit = creditLimit;
     }
 
-    @Override
-    public void getTransactionCost(double transactionAmount) {
-        this.charge += 1.2 * transactionAmount;
+    public double getCreditLimit() {
+        return this.creditLimit;
     }
+
+    public void charge(double purchaseAmount) {
+        this.creditLimit -= purchaseAmount;
+        super.charge(purchaseAmount);
+    }
+
+//    @Override
+//    public void getTransactionCost(double transactionAmount) {
+//        this.charge += 1.2 * transactionAmount;
+//    }
 
 
 

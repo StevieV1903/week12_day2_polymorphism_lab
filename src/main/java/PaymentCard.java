@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public abstract class PaymentCard implements IChargeable {
@@ -5,13 +6,13 @@ public abstract class PaymentCard implements IChargeable {
     private int cardNumber;
     private String expiryDate;
     private int securityNumber;
-    protected int charge;
+    private int ArrayList<Double> charges;
 
-    public PaymentCard(int cardNumber, String expiryDate, int securityNumber, int charge) {
+    public PaymentCard(int cardNumber, String expiryDate, int securityNumber) {
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
         this.securityNumber = securityNumber;
-        this.charge = charge;
+        this.charges = new ArrayList<Double>();
     }
 
     public int getCardNumber() {
@@ -26,11 +27,11 @@ public abstract class PaymentCard implements IChargeable {
         return securityNumber;
     }
 
-    public int getChargeAmount(){
-        return charge;
+    public ArrayList<Double> getCharges(){
+        return charges;
     }
 
     public double paymentFee() {
-        return charge * 1.2;
+        return charges * 1.2;
     }
 }

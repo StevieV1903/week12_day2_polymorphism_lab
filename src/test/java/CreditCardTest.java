@@ -5,11 +5,11 @@ import static junit.framework.TestCase.assertEquals;
 
 public class CreditCardTest {
 
-    CreditCard creditCard;
+    private CreditCard creditCard;
 
     @Before
     public void before(){
-        creditCard = new CreditCard(12345678, "12/12/20", 234, 10);
+        creditCard = new CreditCard(12345678, "12/12/20", 234, 1000);
 
     }
 
@@ -29,14 +29,19 @@ public class CreditCardTest {
     }
 
     @Test
-    public void canGetChargeAmount(){
-        assertEquals(10, creditCard.getChargeAmount());
+    public void canGetCharges(){
+        assertEquals(10, creditCard.getCharges());
+    }
+
+    @Test
+    public void canGetCreditLimit(){
+        assertEquals(1000, creditCard.getCreditLimit());
     }
 
     @Test
     public void canGetTransactionCost(){
         creditCard.paymentFee();
-        assertEquals(12, creditCard.getChargeAmount());
+        assertEquals(12, creditCard.getCharges());
     }
 
 }
